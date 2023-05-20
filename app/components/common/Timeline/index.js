@@ -11,15 +11,15 @@ function Timeline({ stages, change }) {
             const isFirst = i === 0;
             const isLast = i == stages.length - 1;
             return (
-              <div key={stage.content}>
+              <div key={stage.content} style={{position:"relative"}}>
                 <Stage
                   isAdded={stage.isAdded}
                   content={stage.content}
                   isFirst={isFirst}
                   isLast={isLast}
                   change={change}
+                  id={stage.id}
                 />
-                {/* {stages[i + 1]?.isAdded ? <p className={styles.add}>add</p> : null} */}
               </div>
             );
           })}
