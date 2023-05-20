@@ -1,0 +1,99 @@
+.timelineHeader {
+  margin: 20px;
+  font-weight: 590;
+  font-size: 14px;
+  line-height: 20px;
+}
+.stageParent {
+  background: #ffffff;
+  border: 2px solid #eceef2;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: 590;
+  font-size: 14px;
+  line-height: 20px;
+  width: 210px;
+  max-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  z-index: 10;
+  color: #595959;
+}
+.middle,
+.first,
+.last {
+  position: relative;
+}
+.middle::after,
+.first::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  left: 47%;
+  background-color: white;
+  border: 2px solid #0496ff;
+  bottom: -12px;
+  border-radius: 50%;
+  z-index: 1;
+}
+.middle::before,
+.last::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  left: 47%;
+  background-color: white;
+  border: 2px solid #0496ff;
+  top: -12px;
+  border-radius: 50%;
+  z-index: 1;
+}
+.stageNotAdded {
+  color: #0496ff;
+  cursor: pointer;
+  padding: 12px 25px;
+  /* position: absolute; */
+  transform: translateX(-75%);
+}
+.timeline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.stagesRoot {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  padding: 43px;
+}
+.stagesParent {
+  position: relative;
+  min-height: 465px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.stagesParent::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  background-color: #0496ff;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  z-index: 1;
+  height: 90%;
+}
+.add {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 30%;
+  left: 43%;
+  z-index: 11;
+}

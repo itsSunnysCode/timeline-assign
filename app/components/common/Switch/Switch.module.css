@@ -1,0 +1,10 @@
+.switchLabel {
+  font-weight: 590;
+font-size: 14px;
+line-height: 20px;
+color: #262626;
+}
+.root {
+  display: flex;
+  align-items: center;
+}

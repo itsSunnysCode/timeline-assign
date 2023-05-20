@@ -1,0 +1,18 @@
+.root {
+  padding: 16px 12px;
+  font-size: 14px;
+line-height: 20px;
+border-radius: 8px;
+height: 40px;
+width: 80px;
+text-transform: capitalize;
+}
+.primary,.primary:hover {
+  background: #0496FF;
+  color: #FFFFFF;
+}
+
+.secondary {
+  color: #595959;
+  border: 2px solid #ECEEF2;
+}

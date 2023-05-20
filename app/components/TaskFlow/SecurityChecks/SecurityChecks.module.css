@@ -1,0 +1,14 @@
+.root {
+  padding:20px;
+}
+.heading {
+  font-weight: 590;
+font-size: 18px;
+line-height: 24px;
+padding-bottom: 16px;
+border-bottom: 2px solid #ECEEF2;
+}
+.switchExtra {
+padding: 16px 0px;
+border-bottom: 2px solid #ECEEF2;
+}
