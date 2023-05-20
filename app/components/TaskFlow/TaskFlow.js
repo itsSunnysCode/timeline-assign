@@ -16,11 +16,13 @@ const stagesTemp = [
   { id: 4, isAdded: false, content: ["Docker Image Scan"], mandatory: false },
   { id: 5, isAdded: true, content: ["Docker Push"], mandatory: true },
 ];
+
 function TaskFlow() {
   const [stages, setStages] = useState(stagesTemp);
-//TODO:optimize this function
   const change = (id, content, status) => {
+    //TODO:optimize this function
     const tempStages = [...stages];
+
     const result = tempStages.find((d) => id == d.id);
     if (status) {
       if (result.content.length > 1) {
@@ -56,6 +58,9 @@ function TaskFlow() {
         result.isAdded = status;
       }
     } else {
+      if (tempStages.every((d) => d.isAdded)) {
+        tempStages.splice(1, 1);
+      }
       if (content === "Code Analysis") {
         if (
           tempStages.some(
@@ -96,7 +101,37 @@ function TaskFlow() {
         result.isAdded = status;
       }
     }
+    if (tempStages.every((d) => d.isAdded)) {
+      tempStages.splice(1, 0, {
+        id: "blank",
+        isAdded: true,
+        content: ["blank"],
+        mandatory: true,
+      });
+      setStages(tempStages);
+    } else {
+      setStages(tempStages);
+    }
+  };
+  const newStage = (type) => {
+    const tempStages = [...stages];
 
+    tempStages.splice(1, 1);
+    if (type == "add") {
+      tempStages.splice(1, 0, {
+        id: "blank",
+        isAdded: true,
+        content: ["new stage"],
+        mandatory: true,
+      });
+    } else {
+      tempStages.splice(1, 0, {
+        id: "blank",
+        isAdded: true,
+        content: ["blank"],
+        mandatory: true,
+      });
+    }
     setStages(tempStages);
   };
   return (
@@ -110,7 +145,7 @@ function TaskFlow() {
       </div>
       <div className={styles.main}>
         <div className={clsx(styles.flex50, styles.flow)}>
-          <Timeline stages={stages} change={change} />
+          <Timeline stages={stages} change={change} newStage={newStage} />
         </div>
         <div className={clsx(styles.flex50, styles.scCheck)}>
           <SecurityChecks

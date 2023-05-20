@@ -1,53 +1,59 @@
-import React from "react";
+import React,{useState} from "react";
 import styles from "./Timeline.module.css";
 import AddOutlinedIcon from "../../../assets/icons/AddOutlinedIcon";
 import FilledAddIcon from "../../../assets/icons/FilledAddIcon";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 import clsx from "clsx";
 
-function Stage({ id, isAdded, content, isLast, isFirst, change }) {
-
+function Stage({ id, isAdded, content, isLast, isFirst, change, newStage }) {
+  const [showClose, setShowClose] = useState(false)
   if (isAdded) {
-    return (
-      <div
-        className={clsx(
-          styles.stageParent,
-          // !isAdded ? styles.stageNotAdded : null,
-          isLast
-            ? styles.last
-            : isFirst
-            ? styles.first
-            : isAdded
-            ? styles.middle
-            : ""
-        )}
-        // onClick={() => change(content, true)}
-      >
-        {/* {!isAdded ? <AddOutlinedIcon /> : null}{" "} */}
-        <p >{content}</p>
-      </div>
-    );
+    if (content.includes("blank")) {
+      return (
+        <div className={styles.stageParentAddIcon} onClick={() => newStage('add')}>
+          <FilledAddIcon />
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className={clsx(
+            styles.stageParent,
+            // !isAdded ? styles.stageNotAdded : null,
+            isLast
+              ? styles.last
+              : isFirst
+              ? styles.first
+              : isAdded
+              ? styles.middle
+              : ""
+          )}
+          onMouseEnter={()=>content.includes("new stage")?setShowClose(true):null}
+          onMouseLeave={()=>content.includes("new stage")?setShowClose(false):null}
+          // onClick={() => change(content, true)}
+        >
+          {/* {!isAdded ? <AddOutlinedIcon /> : null}{" "} */}
+          {showClose && content.includes("new stage") ? (
+            <span className={styles.closeIcon} onClick={()=>newStage('delete')}>
+              <CloseOutlinedIcon />
+            </span>
+          ) : null}
+          <p>{content}</p>
+        </div>
+      );
+    }
   } else {
     return (
-      <div
-      className={styles.nonAddedStageParent}
-      // className={clsx(
-      //   styles.stageParent,
-      //   // !isAdded ? styles.stageNotAdded : null,
-      //   isLast
-      //     ? styles.last
-      //     : isFirst
-      //     ? styles.first
-      //     : isAdded
-      //     ? styles.middle
-      //     : ""
-      // )}
-      // onClick={() => change(content, true)}
-      >
-        <div style={{marginRight:"30px"}}>
+      <div className={styles.nonAddedStageParent}>
+        <div style={{ marginRight: "30px" }}>
           {content?.map((d) => {
             return (
-              <div key={d} className={styles.stageNotAdded} onClick={() => change(id,d, true)}>
+              <div
+                key={d}
+                className={styles.stageNotAdded}
+                onClick={() => change(id, d, true)}
+              >
                 <AddOutlinedIcon />
                 <p style={{ marginLeft: "10px" }}>{d}</p>
               </div>

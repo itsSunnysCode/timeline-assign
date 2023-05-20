@@ -1,7 +1,7 @@
 import React from "react";
 import Stage from "./Stage";
 import styles from "./Timeline.module.css";
-function Timeline({ stages, change }) {
+function Timeline({ stages, change,newStage }) {
   return (
     <div className={styles.timeline}>
       <p className={styles.timelineHeader}>Task Flow</p>
@@ -19,6 +19,7 @@ function Timeline({ stages, change }) {
                   isLast={isLast}
                   change={change}
                   id={stage.id}
+                  newStage={newStage}
                 />
               </div>
             );
